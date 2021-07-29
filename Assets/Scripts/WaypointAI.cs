@@ -4,43 +4,40 @@ using UnityEngine;
 
 public class WaypointAI : MonoBehaviour //PascalCasing
 {
-    [SerializeField] private float speed = 1f;
+    [SerializeField] private float speed = 1f; //camelCasing
     [SerializeField] private GameObject goal;
     [SerializeField] private GameObject goal2;
     private GameObject currentGoal;
-
+    // == equal to
+    // != not equal to
+    // < less than
+    // > greater than
+    // <= less than or equal to
+    // >= greater than or equal to
+    // && and- both have to be true
+    // || or- if either one is true
+    //task: move ai to as second goal after reaching the first
+    //i will have my headset off, type if u have a question
     private void Start()
     {
         currentGoal = goal;
     }
-    // Update is called once per frame
     void Update()
     {
-        float distance2 = Vector2.Distance(transform.position, goal.transform.position);
-
-
+        // float distance = (goal.transform.position - transform.position).magnitude;
+        float distance2 = Vector2.Distance(transform.position, currentGoal.transform.position);
         if (distance2 > 0.01f)
         {
-            Vector2 direction = (goal.transform.position - transform.position).normalized;
+            //the direction from A to B
+            //direction = B - A
+            Vector2 direction = (currentGoal.transform.position - transform.position).normalized;
             Vector2 aiPosition = transform.position;
             aiPosition += direction * speed * Time.deltaTime;
-
             transform.position = aiPosition;
         }
         else
         {
             currentGoal = goal2;
-
-
         }
-        
-
-
-
-
-
-
-
-
     }
 }
